@@ -3,7 +3,15 @@
     BARRA DE NAVEGACIÓN 
     *******************
     -->
-
+    <?php
+        if ($idioma == 'en') {
+            require 'idiomas/en.php';
+        } elseif ($idioma == 'es') {
+            require 'idiomas/es.php';
+        } elseif ($idioma == 'fr') {
+            require 'idiomas/fr.php';
+        }
+    ?>
 
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
         <div class="container">
@@ -17,7 +25,7 @@
     
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-left">
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
@@ -27,29 +35,37 @@
                     <?php foreach ($articulos as $articulo): ?>
     
                     <li>
-                        <a href="<?php  echo '#' . substr($articulo['titulo'],0,6) ?>"><?php echo $articulo['titulo']; ?></a>
+                        <a href="<?php  echo '#' . str_replace(' ', '',$articulo['titulo']) ?>"><?php echo $articulo['titulo']; ?></a>
                     </li>
     
                     <?php endforeach ?>
                     <?php endif ?>
-                   <!--  <li class="page-scroll">
-                        <a href="#apartado2">Traducción y corrección</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#apartado3">Maquetación y creación web</a>
-                    </li> -->
+
+                    <?php if ($complement_confing['cv'] == true): ?>
+                        <li><a href="#cv">CV</a></li>
+                    <?php endif ?>
+
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-language menuawesome"></i>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo strtoupper($idioma); ?> <i class="fas fa-caret-down"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="<?php echo RUTA; ?> ">Español</a><br>
-                        <a class="dropdown-item" href="<?php echo RUTA; ?>/index.php?lan=en">English</a><br>
-                        <a class="dropdown-item" href="<?php echo RUTA; ?>/index.php?lan=fr">Francais</a><br>
-                        <!-- <div class="dropdown-divider"></div> -->
-                        <a class="dropdown-item" href="<?php echo RUTA; ?>/index.php?lan=ca">Català</a>
+
+                        <!-- Si es español no envia parámetro. Si es otro idioma, sí -->
+                        <?php foreach ($idiomas_config as $key => $value): ?>
+                            <?php if ($key ==  'es'): ?>
+                            <a class="dropdown-item" href="<?php echo RUTA; ?> ">Español</a><br>
+                            <?php else: ?>  
+                            <a class="dropdown-item" href="<?php echo RUTA; ?>/index.php?lan=<?php echo $key; ?>"><?php echo $value; ?></a><br>    
+                            <?php endif ?>
+                        <?php endforeach ?>
                         </div>
 
                     </li>
+                    <?php if ($complement_confing['galeria'] == true): ?>
+                        <li><a href="#galeria"><i class="fas fa-images menuawesome"></i></a></li>
+                    <?php endif ?>
+
+                    <!-- <li><a href="#galeria"><i class="fas fa-images menuawesome"></i></a></li> -->
                     <li class="page-scroll">
                         <a href="#contacto"><i class="fas fa-envelope menuawesome"></i></a>
                     </li> 

@@ -24,9 +24,16 @@ if (!$id || !$sec) {
 }
 
 if ($sec == 'art') {
-	$borrar_articulo = $conexion->prepare('DELETE FROM articulos WHERE id = :id');
+
+	/*Opcion multi-query para borrar y luego resetear el orden de los artículos.*/
+
+	$sql = 'DELETE FROM articulos WHERE id = :id; SET @count = 0; UPDATE articulos SET orden = @count:= @count + 1';
+
+	$borrar_articulo = $conexion->prepare($sql);
 	$borrar_articulo->execute(array(':id' => $id));
+	
 }
+
 
 if ($sec == 'us') {
 	$borrar_usuario = $conexion->prepare('DELETE FROM usuarios WHERE id = :id');

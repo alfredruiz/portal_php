@@ -25,10 +25,15 @@ CABECERA
             <hr>
         </div>
         <a href="../admin/nuevo.php" class="btn btn-primary text-right"><i class="fas fa-plus"></i> Nueva sección</a>&nbsp;
-        <a href="../admin/listado.php" class="btn btn-success text-right">En español</a>
-        <a href="../admin/listado.php?lan=en" class="btn btn-success text-right">In English</a>
-        <a href="../admin/listado.php?lan=fr" class="btn btn-success text-right">En francais</a>
-        <a href="../admin/listado.php?lan=ca" class="btn btn-success text-right">En català</a>
+            <?php foreach ($idiomas_config as $key => $value): ?>
+                <?php if ($key ==  'es'): ?>
+                    <a href="../admin/listado.php" class="btn btn-success text-right">español</a>
+                <?php else: ?>  
+                    <a href="../admin/listado.php?lan=<?php echo $key; ?>" class="btn btn-success text-right"><?php  echo $value; ?></a>
+                <?php endif ?>
+            <?php endforeach ?>
+ <!--        <a href="../admin/listado.php?lan=fr" class="btn btn-success text-right">En francais</a>
+        <a href="../admin/listado.php?lan=ca" class="btn btn-success text-right">En català</a> -->
         </div>
     </div>
     <br>
@@ -87,11 +92,24 @@ CABECERA
 
                     <div class=" titulo col-xs-12 col-lg-1">
                         <a href="editar.php?id=<?php echo $articulo['id']; ?>&sec=art"><i class="far fa-edit "></i></a>&nbsp;
-                        <a href="borrar.php?id=<?php echo $articulo['id']; ?>&sec=art"><i class="far fa-trash-alt ">&nbsp;</i></a>
+                        <a href="borrar.php?id=<?php echo $articulo['id']; ?>&sec=art&lan=<?php echo $articulo['idioma'] ?>"><i class="far fa-trash-alt ">&nbsp;</i></a>
                     </div>
 
-                    <div class="titulo col-xs-12 col-lg-11">
-                       <?php echo $articulo['titulo']; ?>
+                    <div class="titulo col-xs-11 col-lg-10">
+                       [<?php echo $articulo['orden']  ?>] <?php echo $articulo['titulo']; ?> 
+                       
+
+                    </div>
+                    <div class="text-right col-xs-1 col-lg-1">
+
+                        <?php if ($articulo['orden'] > 1): ?>
+                        <a href="listado.php?ord=<?php echo $articulo['orden']; ?>&nord=<?php echo (int)$articulo['orden']-1; ?>"><i class="fas fa-caret-up fa-2x ">&nbsp;</i></a>
+                        <?php endif ?>
+
+                        <?php if ($articulo['orden'] < $totalArticulos): ?>
+                        <a href="listado.php?ord=<?php echo $articulo['orden']; ?>&nord=<?php echo (int)$articulo['orden']+1; ?>"><i class="fas fa-caret-down fa-2x ">&nbsp;</i></a>
+                        <?php endif ?>
+
                     </div>
 
 

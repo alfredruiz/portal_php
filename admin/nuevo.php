@@ -21,10 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$texto = $_POST['texto'];
 	$imagen = $_FILES['thumb']['tmp_name'];
 	$seccion = '';
-	$orden = (int)total_articulos($conexion, $idioma) + 1;
+	$totalArticulos = (int)total_articulos($conexion, $idioma);
+	$orden = $totalArticulos + 1;
 	$usuario = $_SESSION['usuario'];
-
-	echo 'orden: ' . $orden;
 
 	$imagen_subida = '../' . $blog_config['carpeta_imagenes'] . $_FILES['thumb']['name'];
 

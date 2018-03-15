@@ -24,7 +24,7 @@ function limpiarDatos($datos){
 
 /*Para obtener los apartados o secciones de la web*/
 function obtener_articulos($conexion, $idioma){ //en el tutorial es obtener_post
-	$totalArticulos = $conexion->prepare('SELECT * FROM articulos WHERE idioma = :idioma');
+	$totalArticulos = $conexion->prepare('SELECT * FROM articulos WHERE idioma = :idioma ORDER BY orden');
 	$totalArticulos->execute(array(':idioma' => $idioma));
 	return $totalArticulos->fetchAll();
 }
@@ -49,6 +49,39 @@ function obtener_articulo_por_id($conexion, $id){
 	$resultado = $conexion->query("SELECT * FROM articulos WHERE id = $id LIMIT 1");
 	$resultado = $resultado->fetchAll();
 	return ($resultado) ? $resultado : false;
+}
+
+/*Obtener un artículo por su orden*/
+function obtener_articulo_por_orden($conexion, $orden){
+	$resultado = $conexion->query("SELECT * FROM articulos WHERE orden = $orden LIMIT 1");
+	$resultado = $resultado->fetch();
+	return ($resultado) ? $resultado : false;
+}
+
+
+function subirBajarArticulo($conexion, $posicionOrigen, $posicionDestino){
+
+	$origen = obtener_articulo_por_orden($conexion,$posicionOrigen);
+	$destino =  obtener_articulo_por_orden($conexion,$posicionDestino);
+
+	$ordenOrigen = (int)$origen['orden'];
+	$idOrigen = (int)$origen['id'];
+	$ordenDestino = (int)$destino['orden'];
+	$idDestino = (int)$destino['id'];
+
+	$insertarOrdenDestino = $conexion->prepare('UPDATE articulos SET orden = :ordenDestino WHERE id = :idOrigen');
+	$insertarOrdenDestino->execute(array(
+			':ordenDestino' => $ordenDestino, 
+			':idOrigen' => $idOrigen
+	));
+
+	$insertarOrdenOrigen = $conexion->prepare('UPDATE articulos SET orden = :ordenOrigen WHERE id = :idDestino');
+	$insertarOrdenOrigen->execute(array(
+			':ordenOrigen' => $ordenOrigen, 
+			':idDestino' => $idDestino
+	));
+
+	// header('Location: listado.php');
 }
 
 /*Obtener la cabecera por idioma*/
@@ -113,10 +146,10 @@ function login($conexion, $usuario, $password){
 }
 
 /*Inserar usuario. Tener en cuenta que no sde insertan los valores autómáticos como el id...*/
-function insertar_usuario($conexion, $usuario, $password, $nombre, $email, $direccion, $codigopostal, $ciudad, $provincia, $ccaa, $pais, $telefono1){
+function insertar_usuario($conexion, $usuario, $password, $nombre, $email, $direccion, $codigopostal, $ciudad, $provincia, $ccaa, $pais, $telefono1, $telefono2, $fax){
 	$password = hash('sha512', $password);
 
-	$statement = $conexion->prepare('INSERT INTO usuarios (usuario, pass, nombre, email, direccion, codigopostal, ciudad, provincia, ccaa, pais, telefono1) VALUES (:usuario, :password, :nombre, :email, :direccion, :codigopostal, :ciudad, :provincia, :ccaa, :pais, :telefono1 )');
+	$statement = $conexion->prepare('INSERT INTO usuarios (usuario, pass, nombre, email, direccion, codigopostal, ciudad, provincia, ccaa, pais, telefono1) VALUES (:usuario, :password, :nombre, :email, :direccion, :codigopostal, :ciudad, :provincia, :ccaa, :pais, :telefono1, :telefono2, :fax )');
 	$statement->execute(array(
 			':usuario' => $usuario,
 			':password' => $password,
@@ -128,12 +161,16 @@ function insertar_usuario($conexion, $usuario, $password, $nombre, $email, $dire
 			':provincia' => $provincia,
 			':ccaa' => $ccaa,
 			':pais' => $pais,
-			':telefono1' => $telefono1
+			':telefono1' => $telefono1,
+			':telefono2' => $telefono2,
+			':fax' => $fax
 		));
 
 	return $statement;
 	// header('Location: index.php');
 }
+
+
 
 /*Comprobar si se ha iniciado sesión para limitar el acceso a las páginas de administración, por ejemplo*/
 function comprobarSesion(){

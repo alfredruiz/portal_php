@@ -148,8 +148,26 @@
                         <div class="row">
                              <div class=" col-xs-12">
                                 <div class="divinput">
-                                <label class="formlabel">Teléfono</label>
+                                <label class="formlabel">Teléfono 1</label>
                                 <input type="text" class="form-control inputtexto" id="telefono1" name="telefono1" value="<?php echo $post['telefono1'] ?> ">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                             <div class=" col-xs-12">
+                                <div class="divinput">
+                                <label class="formlabel">Teléfono 2</label>
+                                <input type="text" class="form-control inputtexto" id="telefono2" name="telefono2" value="<?php echo $post['telefono2'] ?> ">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                             <div class=" col-xs-12">
+                                <div class="divinput">
+                                <label class="formlabel">Fax</label>
+                                <input type="text" class="form-control inputtexto" id="fax" name="fax" value="<?php echo $post['fax'] ?> ">
                                 </div>
                             </div>
                         </div>

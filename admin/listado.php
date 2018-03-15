@@ -9,6 +9,9 @@ require '../funciones.php';
 
 comprobarSesion();
 
+$origen = "";
+$destino = "";
+
 $usuario = $_SESSION['usuario'];
 
 $mensajeError = '';
@@ -31,6 +34,8 @@ if (isset($_GET['lan'])) {
     $idioma = "es";
 }
 
+$totalArticulos = (int)total_articulos($conexion, $idioma);
+// $orden = $totalArticulos + 1;
 
 $articulos = obtener_articulos($conexion, $idioma);
 
@@ -60,6 +65,14 @@ if (!$usuarios) {
     // echo $mensajeError;
     header('Location: error.php');
 }
+
+if (isset($_GET['ord'])) {
+    $posicionOrigen = (int)$_GET['ord'];
+    $posicionDestino = (int)$_GET['nord'];
+    subirBajarArticulo($conexion, $posicionOrigen, $posicionDestino);
+    header('Location: listado.php');
+}
+
 
 require '../views/listado.view.php';
  ?>

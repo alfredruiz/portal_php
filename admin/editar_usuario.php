@@ -46,6 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$ccaa = $_POST['ccaa'];
 	$pais = $_POST['pais'];
 	$telefono1 = $_POST['telefono1'];
+	$telefono2 = $_POST['telefono2'];
+	$fax = $_POST['fax'];
 
 	// $password = hash('sha512', $password);
 
@@ -80,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 			if ($errores == '') {
 			$password = hash('sha512', $password);
-			$editar_usuario = $conexion->prepare('UPDATE usuarios SET usuario = :usuario, nombre = :nombre, razonsocial = :razonsocial, email = :email, direccion = :direccion, codigopostal = :codigopostal, ciudad = :ciudad, provincia = :provincia, ccaa = :ccaa, pais = :pais, telefono1 = :telefono1 WHERE id = :id');
+			$editar_usuario = $conexion->prepare('UPDATE usuarios SET usuario = :usuario, nombre = :nombre, razonsocial = :razonsocial, email = :email, direccion = :direccion, codigopostal = :codigopostal, ciudad = :ciudad, provincia = :provincia, ccaa = :ccaa, pais = :pais, telefono1 = :telefono1, telefono2 = :telefono2, fax = :fax WHERE id = :id');
 
 			//Cuidado con el orden en el array!!!
 			$editar_usuario->execute(array(
@@ -95,6 +97,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				':ccaa' => $ccaa,
 				':pais' => $pais,
 				':telefono1' => $telefono1,
+				':telefono2' => $telefono2,
+				':fax' => $fax,
 				':id' => $id
 			));		
 
@@ -105,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 			if ($errores == '') {
 			$password = hash('sha512', $password);
-			$editar_usuario = $conexion->prepare('UPDATE usuarios SET usuario = :usuario, pass = :password, nombre = :nombre, razonsocial = :razonsocial, email = :email, direccion = :direccion, codigopostal = :codigopostal, ciudad = :ciudad, provincia = :provincia, ccaa = :ccaa, pais = :pais, telefono1 = :telefono1 WHERE id = :id');
+			$editar_usuario = $conexion->prepare('UPDATE usuarios SET usuario = :usuario, pass = :password, nombre = :nombre, razonsocial = :razonsocial, email = :email, direccion = :direccion, codigopostal = :codigopostal, ciudad = :ciudad, provincia = :provincia, ccaa = :ccaa, pais = :pais, telefono1 = :telefono1, telefono2 = :telefono2, fax = :fax WHERE id = :id');
 
 			//Cuidado con el orden en el array!!!
 			$editar_usuario->execute(array(
@@ -121,6 +125,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				':ccaa' => $ccaa,
 				':pais' => $pais,
 				':telefono1' => $telefono1,
+				':telefono2' => $telefono2,
+				':fax' => $fax,
 				':id' => $id
 			));		
 

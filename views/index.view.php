@@ -16,16 +16,19 @@
 
 <body id="page-top" class="index">
 
-    <?php require 'menu_superior.view.php'; ?>
+    <?php require 'menu_superior.view.php'; require 'idiomas/'.$idioma.'.php'; ?>
+
+
 
     <!-- 
     ***************** 
     CABECERA 
     ******************
     -->    
+    
 
     <header class="fondoS" id="page-top">
-            <div class="transparente"></div>
+    <div class="transparente"></div>
         <div class="container logo">
             <div class="row" >
                 <div class="col-lg-12" >
@@ -50,9 +53,9 @@
     
     <?php foreach ($articulos as $articulo): ?>
         <?php if ($articulo['orden'] % 2 == 0): ?>
-            <section id="<?php echo substr($articulo['titulo'],0,6) ?>" class="fondoazul">
+            <section id="<?php echo str_replace(' ', '',$articulo['titulo']) ?>" class="fondoazul">
         <?php else: ?>  
-            <section id="<?php echo substr($articulo['titulo'],0,6) ?>">
+            <section id="<?php echo str_replace(' ', '',$articulo['titulo']) ?>">
         <?php endif ?>
         
         <div class="container">
@@ -60,7 +63,7 @@
                 <div class="col-lg-12 text-center">
                     <img src="<?php echo RUTA . '/img/' . $articulo['imagen']; ?>" alt="<?php echo $articulo['imagen'] ?> " class="imagenApartado">
                      <h2><?php echo $articulo['titulo']; ?></h2>
-                    <hr class="hrnegra">
+                    <hr class="hrazul">
                 </div>
             </div>
             <div class="row">
@@ -76,85 +79,81 @@
 
 
 
+    <!-- 
+    *********************** 
+    GALERIA
+    ***********************
+    -->
 
-
-
+    <?php 
+    if ($complement_confing['galeria'] == true) {
+    require 'galeria/view/index.view.php'; 
+        }
+    ?>
 
 
     <!-- 
-    ********************** 
-    FORMULARIO DE CONTACTO 
-    **********************
+    *********************** 
+    CV
+    ***********************
     -->
 
-    <!--<section id="contact">
-        <div class="container">
+    <?php 
+    if ($complement_confing['cv'] == true) {
+    require 'cv.view.php'; 
+        }
+    ?>
+
+    <!-- <section class="fondoazul""  >
+        <div class="container" id="cv">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Contacto</h2>
-                    <hr class="star-primary">
+                    <h2>Curriculum</h2>
+                    <hr class="hrazul">
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">-->
-                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    <!--<form name="sentMessage" id="contactForm" action="mailto:alfredruiz@gmail.com" method="post" enctype="text/plain" novalidate>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Mombre</label>
-                                <input type="text" class="form-control" placeholder="Nombre" id="name" required data-validation-required-message="Please enter your name.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Correo Electrónico</label>
-                                <input type="email" class="form-control" placeholder="Correo electrónico" id="email" required data-validation-required-message="Escriba su correo electrónico.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Teléfono</label>
-                                <input type="tel" class="form-control" placeholder="Teléfono" id="phone" required data-validation-required-message="Escriba su número de teléfono.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Mensaje</label>
-                                <textarea rows="5" class="form-control" placeholder="Mensaje" id="message" required data-validation-required-message="Escriba un mensaje."></textarea>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <br>
-                        <form name="sentMessage" id="contactForm" action="mailto:alfredruiz@gmail.com" method="post" enctype="text/plain" novalidate>
-                        <div id="success"></div>
-                        <div class="row">
-                            <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-success btn-lg">Enviar</button>
-                            </div>
-                        </div>
-                        </form>
-                    </form>
-                </div>
+            <div class="col-lg-12 text-center">
+                <a href="http://www.innovars.es/cv" class="btn btn-lg btn-outline" target="blank">
+                    <i ></i> <?php echo $textos['curriculum_online'] ?>
+                </a>
+                <a href="http://www.innovars.es/cv/docs/cv16esq.pdf" class="btn btn-lg btn-outline" target="blank">
+                    <i ></i> <?php echo $textos['curriculum_esquema'] ?>
+                </a>
             </div>
         </div>
-    </section>-->
+    </section> -->
+
+
 
         <!-- 
     ********************** 
     SECCIÓN CONTACTO 
     **********************
     -->
-
-        <section class="fondogris" id="contacto">
+    
+            <section class="fondogris" id="contacto">
         <div class="container ">
+
+                        <div class="row">
+                <div class="col-lg-12 text-center">
+                <img src="img/sobre.png" alt="hello picture" class="imagenPie">
+                <h2><?php echo $textos['contactoTitulo']; ?></h2>
+                <hr class="hrnegra">
+            </div>
+        
+        <!-- FORMULARIO DE CONTACTO -->
+
+    <?php 
+    if ($complement_confing['correo'] == true) {
+    require 'contact_form.view.php'; 
+        }
+    ?>
+
+
+            <!-- DATOS DE CONTACTO -->
             <div class="row ">
                 <div class="col-lg-12 text-center">
-                    <img src="img/sobre.png" alt="hello picture" class="imagenPie">
-                    <h3>Contacto</h3>
+                    <!-- <img src="img/sobre.png" alt="hello picture" class="imagenPie"> -->
+                    <!-- <h3>Contacto</h3> -->
                     <h4><?php echo $usuario['nombre']; ?></h4>
 
                     <?php if (!empty($usuario['email'])): ?>
@@ -172,39 +171,40 @@
                                 if (!empty($usuario['ciudad'])) echo $usuario['ciudad'] . '. ';
                                 if (!empty($usuario['ccaa'])) echo $usuario['ccaa'] . '. ';
                                 if (!empty($usuario['pais'])) echo $usuario['pais'] . '. ';
-
                             ?>
-
                         </p>
                     <?php endif ?>
 
-                    <?php if (!empty($usuarios['telefono1'])): ?>
-                        <p>Tel: <?php echo $usuarios['telefono1']; ?></p>
+                    <?php if (!empty($usuario['telefono1'])): ?>
+                        <p><?php echo $usuario['telefono1']; ?></p>
+                    <?php endif ?>
+
+                    <?php if (!empty($usuario['telefono2'])): ?>
+                        <p><?php echo $usuario['telefono2']; ?></p>
+                    <?php endif ?>
+
+                    <?php if (!isset($usuario['fax'])): ?>
+                        <p>fax: <?php echo $usuario['fax']; ?></p>
                     <?php endif ?>
 
                 </div>
                 
                 <!-- REDES SOCIALES -->
 
-                <!-- <div class="col-lg-12 text-center">
+                <div class="col-lg-12 text-center">
                     <ul class="list-inline">
+                       
                         <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                            <a href="https://www.linkedin.com/in/alfredoruizsanchez/" title="Linkedin" target="blank" class="btn-social btn-outline"><i class="fab fa-linkedin-in"></i></a>
                         </li>
                         <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                            <a href="https://github.com/alfredruiz/" target="blank" title="GitHub" class="btn-social btn-outline"><i class="fab fa-github"></i></a>
                         </li>
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                         <li>
+                            <a href="https://bitbucket.org/alfredruiz/" target="blank" title="Bitbucket" class="btn-social btn-outline"><i class="fab fa-bitbucket"></i></a>
                         </li>
                     </ul>
-                </div> -->
+                </div>
             </div>
         </div>
 

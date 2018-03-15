@@ -25,13 +25,11 @@
                         <div class="row">
                             <div class=" col-xs-12">
                                 <div class="divinput">
-                                    <select name="idiomas" 
-                                    class="form-control listadesplegable">
+                                    <select name="idiomas" class="form-control listadesplegable">
                                         <option value="">Idioma...</option>
-                                        <option value="es">Español</option>
-                                        <option value="en">English</option>
-                                        <option value="fr">Francais</option>
-                                        <option value="ca">Català</option>
+                                        <?php foreach ($idiomas_config as $key => $value): ?>
+                                            <option value="<?php echo $key; ?> "><?php  echo $value; ?></option>
+                                        <?php endforeach ?>
                                     </select>
                                 </div>
                             </div>
