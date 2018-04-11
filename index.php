@@ -79,7 +79,7 @@ if(isset($_POST['btn_send']))
 		$mail->SMTPSecure = $mail_config['smtpSecure'];                 
 		$mail->Host       = $mail_config['host'];      
 		$mail->Port       = $mail_config['port'];   
-		$mail->IsSMTP(); // use SMTP          
+		// $mail->IsSMTP(); // use SMTP          
 		$mail->AddAddress('alfredruiz@gmail.com');
 		// $mail->AddAddress($correo_destino);
 		$mail->Username   =$mail_config['username'];  

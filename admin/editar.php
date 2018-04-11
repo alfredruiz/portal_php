@@ -46,59 +46,71 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	/*Si no se ha seleccionado imagen, se mantiene la que ya había subida.
 	*/
 
-	if (empty($imagen['name'])) {
-		if (isset($_POST['sinImagen']) && $_POST['sinImagen'] == 'noimg' ) {
-			$sql = 'DELETE imagen FROM cabecera WHERE idioma = :idioma';
-			$borrar_imagen = $conexion->prepare($sql);
-			$borrar_imagen->execute(array(':idioma' => $idioma));
+	$errores = '';
+
+	if (empty($idioma)) {
+		echo '<br><br>';
+		$errores .= "Por favor complete todos los campos obligatorios";
+
+	} else {
+
+		if (empty($imagen['name'])) {
+			if (isset($_POST['sinImagen']) && $_POST['sinImagen'] == 'noimg' ) {
+				$sql = 'DELETE imagen FROM cabecera WHERE idioma = :idioma';
+				$borrar_imagen = $conexion->prepare($sql);
+				$borrar_imagen->execute(array(':idioma' => $idioma));
+
+			} else {
+				$imagen = $imagen_subida;}
+		} else {
+			$imagen_subida = '../' . $blog_config['carpeta_imagenes'] . $_FILES['imagen']['name'];
+			move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_subida);
+			$imagen = $_FILES['imagen']['name'];
+		}
+
+
+
+		if (empty($imagen_fondo['name'])) {
+			$imagen_fondo = $imagen_fondo_subida;
+		} else {
+			$imagen_fondo_subida = '../' . $blog_config['carpeta_imagenes'] . $_FILES['imagen_fondo']['name'];
+			move_uploaded_file($_FILES['imagen_fondo']['tmp_name'], $imagen_fondo_subida);
+			$imagen_fondo = $_FILES['imagen_fondo']['name'];
+		}
+
+
+
+		if (!empty($titulo)) {
+			
+			$editar_articulo = $conexion->prepare('UPDATE articulos SET idioma = :idioma, seccion = :seccion, titulo = :titulo, texto = :texto, imagen = :imagen, usuario = :usuario WHERE id = :id');
+
+			$editar_articulo->execute(array(
+				':idioma' => $idioma,
+				':seccion' => $seccion,
+				':titulo' => $titulo,
+				':texto' => $texto,
+				':imagen' => $imagen,
+				':usuario' => $usuario,
+				':id' => $id
+			));
 
 		} else {
-		$imagen = $imagen_subida;}
-	} else {
-		$imagen_subida = '../' . $blog_config['carpeta_imagenes'] . $_FILES['imagen']['name'];
-		move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_subida);
-		$imagen = $_FILES['imagen']['name'];
-	}
 
+			$editar_cabecera = $conexion->prepare('UPDATE cabecera SET idioma = :idioma, titulo1 = :titulo1, titulo2 = :titulo2, titulo3 = :titulo3, imagen = :imagen, imagen_fondo = :imagen_fondo, usuario = :usuario WHERE id = :id');
 
-
-	if (empty($imagen_fondo['name'])) {
-		$imagen_fondo = $imagen_fondo_subida;
-	} else {
-		$imagen_fondo_subida = '../' . $blog_config['carpeta_imagenes'] . $_FILES['imagen_fondo']['name'];
-		move_uploaded_file($_FILES['imagen_fondo']['tmp_name'], $imagen_fondo_subida);
-		$imagen_fondo = $_FILES['imagen_fondo']['name'];
-	}
-
-	if (!empty($titulo)) {
-		
-		$editar_articulo = $conexion->prepare('UPDATE articulos SET idioma = :idioma, seccion = :seccion, titulo = :titulo, texto = :texto, imagen = :imagen, usuario = :usuario WHERE id = :id');
-
-		$editar_articulo->execute(array(
-			':idioma' => $idioma,
-			':seccion' => $seccion,
-			':titulo' => $titulo,
-			':texto' => $texto,
-			':imagen' => $imagen,
-			':usuario' => $usuario,
-			':id' => $id
-		));
-
-	} else {
-
-		$editar_cabecera = $conexion->prepare('UPDATE cabecera SET idioma = :idioma, titulo1 = :titulo1, titulo2 = :titulo2, titulo3 = :titulo3, imagen = :imagen, imagen_fondo = :imagen_fondo, usuario = :usuario WHERE id = :id');
-
-		$editar_cabecera->execute(array(
-			':idioma' => $idioma,
-			':titulo1' => $titulo1,
-			':titulo2' => $titulo2,
-			':titulo3' => $titulo3,
-			':imagen' => $imagen,
-			':imagen_fondo' => $imagen_fondo,
-			':usuario' => $usuario,
-			':id' => $id
-		));
-	}
+			$editar_cabecera->execute(array(
+				':idioma' => $idioma,
+				':titulo1' => $titulo1,
+				':titulo2' => $titulo2,
+				':titulo3' => $titulo3,
+				':imagen' => $imagen,
+				':imagen_fondo' => $imagen_fondo,
+				':usuario' => $usuario,
+				':id' => $id
+			));
+		}
+	
+}
 
 	header('Location: ' .RUTA . '/admin/listado.php');
 } 

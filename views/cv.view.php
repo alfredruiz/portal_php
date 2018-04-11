@@ -3,9 +3,8 @@
 <section id="cv" class="fondoazul "  >
         <div class="container ">
             <div class="row">
-
                 <div class="col-lg-12 text-center">
-                            <img src="<?php echo RUTA . '/img/' . 'cv.png'; ?>" class="imagenApartado">
+                    <img src="<?php echo RUTA . '/img/' . 'cv.png'; ?>" class="imagenApartado">
 
                     <h2>Curriculum</h2>
                     <hr class="hrazul">

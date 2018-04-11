@@ -66,7 +66,7 @@ $(document).ready(function(){
         <?php if ($articulo['orden'] % 2 == 0): ?>
             <section id="<?php echo str_replace(' ', '',$articulo['titulo']) ?>" class="fondoazul">
         <?php else: ?>  
-            <section id="<?php echo str_replace(' ', '',$articulo['titulo']) ?>">
+            <section id="<?php echo str_replace(' ', '',$articulo['titulo']) ?>" class="fondoblanco">
         <?php endif ?>
         
         <div class="container">
@@ -213,6 +213,9 @@ $(document).ready(function(){
                         </li>
                          <li>
                             <a href="https://bitbucket.org/alfredruiz/" target="blank" title="Bitbucket" class="btn-social btn-outline"><i class="fab fa-bitbucket"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://es.gravatar.com/alfredruiz" target="blank" title="worpress" class="btn-social btn-outline"><i class="fab fa-wordpress-simple"></i></a>
                         </li>
                     </ul>
                 </div>

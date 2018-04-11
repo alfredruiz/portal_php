@@ -54,17 +54,37 @@
                             <div class="row">
                                 <div class=" col-xs-12">
                                     <div class="divinput">
-                                        <select name="idiomas" 
-                                        class="form-control listadesplegable" value="<?php echo $post['idioma']; ?>">
-                                        <option value="">Idioma...</option>
-                                            <option <?php if($post['idioma'] == 'es') echo "selected= 'selected';" ?> value="es" >Español</option>
-                                            <option <?php if($post['idioma'] == 'en') echo "selected= 'selected';" ?> value="en">English</option>
-                                            <option <?php if($post['idioma'] == 'fr') echo "selected= 'selected';" ?> value="fr">Francais</option>
-                                            <option <?php if($post['idioma'] == 'ca') echo "selected= 'selected';" ?> value="ca">Català</option>
+
+                                        <select name="idiomas" class="form-control listadesplegable">
+                                        
+                                            <?php foreach ($idiomas_config as $key => $value): ?>
+
+                                                <?php if (empty($post['idioma'])): ?>
+                                                    <option value="">Elija el idioma (Campo obligatorio)</option>
+                                                <?php elseif ($post['idioma'] === $key): ?>
+                                                    <option value="<?php echo $key; ?> " selected= 'selected'>
+                                                        <?php  echo $value; ?>
+                                                    </option>     
+                                                <?php else: ?>
+                                                <option value="<?php echo $key; ?> "><?php  echo $value; ?></option>
+                                                <?php endif ?>
+                                                
+                                            <?php endforeach ?>
                                         </select>
+
                                     </div>
                                 </div>
                             </div>
+
+                            <?php if (!empty($errores)): ?>
+                            
+                            <div class="text-danger ">
+                                <span><?php echo $errores; ?></span>
+                                <br>
+                                <br>
+                            
+                            </div>
+                        <?php endif ?>
 
                         <?php if ($_GET['sec'] == 'art'): ?>
 

@@ -26,7 +26,7 @@
                             <div class=" col-xs-12">
                                 <div class="divinput">
                                     <select name="idiomas" class="form-control listadesplegable">
-                                        <option value="">Idioma...</option>
+                                        <option value="">Elija el idioma (Campo obligatorio)</option>
                                         <?php foreach ($idiomas_config as $key => $value): ?>
                                             <option value="<?php echo $key; ?> "><?php  echo $value; ?></option>
                                         <?php endforeach ?>
@@ -34,6 +34,15 @@
                                 </div>
                             </div>
                         </div>
+                        <?php if (!empty($errores)): ?>
+                            
+                            <div class="text-danger ">
+                                <span><?php echo $errores; ?></span>
+                                <br>
+                                <br>
+                            
+                            </div>
+                        <?php endif ?>
 
                         <div class="row">
                             <div class=" col-xs-12">

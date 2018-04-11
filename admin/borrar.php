@@ -27,10 +27,14 @@ if ($sec == 'art') {
 
 	/*Opcion multi-query para borrar y luego resetear el orden de los artículos.*/
 
-	$sql = 'DELETE FROM articulos WHERE id = :id; SET @count = 0; UPDATE articulos SET orden = @count:= @count + 1';
+	$sql = 'DELETE FROM articulos WHERE id = :id and idioma = :lan; SET @count = 0; UPDATE articulos SET orden = @count:= @count + 1 WHERE idioma = :lan';
 
 	$borrar_articulo = $conexion->prepare($sql);
-	$borrar_articulo->execute(array(':id' => $id));
+	$borrar_articulo->execute(array(
+		':id' => $id,
+		':lan' => $lan
+	));
+
 	
 }
 

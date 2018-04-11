@@ -11,9 +11,9 @@ comprobarSesion();
 
 $conexion = conexion($bd_config);
 
-if (!$conexion) {
+	if (!$conexion) {
 	header('Location: ../error.php');
-}
+	}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$idioma = $_POST['idiomas'];
@@ -27,21 +27,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	$imagen_subida = '../' . $blog_config['carpeta_imagenes'] . $_FILES['thumb']['name'];
 
-	move_uploaded_file($imagen, $imagen_subida);
+	$errores = '';
 
-	$statement = $conexion->prepare('INSERT INTO articulos (idioma, seccion, orden, titulo, texto, imagen, usuario) VALUES (:idioma,:seccion,:orden,:titulo,:texto,:imagen,:usuario)');
+	if (empty($idioma)) {
+		echo '<br><br>';
+		$errores .= "Por favor complete todos los campos obligatorios";
 
-	$statement->execute(array(
-		':idioma' => $idioma,
-		':seccion' => $seccion,
-		':orden' => $orden,
-		':titulo' => $titulo,
-		':texto' => $texto,
-		':imagen' => $imagen_subida,
-		':usuario' => $usuario
-	));
+	} else {
 
-	header('Location: '. RUTA . '/admin/listado.php');
+		move_uploaded_file($imagen, $imagen_subida);
+
+		
+
+		$statement = $conexion->prepare('INSERT INTO articulos (idioma, seccion, orden, titulo, texto, imagen, usuario) VALUES (:idioma,:seccion,:orden,:titulo,:texto,:imagen,:usuario)');
+
+		$statement->execute(array(
+			':idioma' => $idioma,
+			':seccion' => $seccion,
+			':orden' => $orden,
+			':titulo' => $titulo,
+			':texto' => $texto,
+			':imagen' => $imagen_subida,
+			':usuario' => $usuario
+		));
+
+		header('Location: '. RUTA . '/admin/listado.php');
+		}
+	
 }
 require '../views/nuevo.view.php';
 

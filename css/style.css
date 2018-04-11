@@ -169,7 +169,8 @@ a.dropdown-item {
     transform: translateY(-50%);
 }
 
-#cv{
+/*Centrar el contenido en la ventana*/
+#cv, #contacto{
      display: flex;
     justify-content: center;
     align-content: center;
@@ -188,6 +189,29 @@ a.dropdown-item {
 .fondoazul{
 	background-color: #2C3E50;
 	color:white;
+
+}
+
+.fondoazul a:link,
+.fondoazul a:visited{
+  color: #fcfec9;
+}
+
+.fondoazul a:hover{
+  color: #faff82;
+  font-style: italic;
+  text-decoration: none;
+}
+
+.fondoblanco a:link,
+.fondoblanco a:visited{
+  color: #010487;
+}
+.fondoblanco a:hover{
+  font-style: italic;
+  color: #010476;
+  text-decoration: none;
+
 }
 
 .fondogris{
