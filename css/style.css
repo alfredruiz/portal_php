@@ -9,6 +9,16 @@ hr {
     margin: 25px auto 30px;
 }
 
+.hrmenu {
+  color: white;
+    padding: 0;
+    border: none;
+    border-top: solid 1px;
+    text-align: left !important;
+    max-width: 100%;
+    margin-left: 0;
+}
+
 textarea {
 	resize: vertical;
 }
@@ -21,26 +31,34 @@ textarea {
 	font-size: 2em;
 		line-height: 1.5;
 		font-style: oblique;
-		margin-top:0;
+		/*margin-top:0;*/
 		margin-bottom: 0.5em;
 		color: black;
 
 }
 
+
 header .intro-text .name {
     font-family: Montserrat !important;
     font-size: 3em !important;
     font-weight: bold !important;
+
 }
 
 .menuawesome {
 	font-size: 1.5em;
+
 }
 
 .logoweb {
 	margin-bottom: 1px;
 	margin-top:-50px;
 	max-height: 300px;
+}
+
+.logoinnovarspie{
+  width: 100px;
+  vertical-align: bottom;
 }
 
 
@@ -55,12 +73,6 @@ header .intro-text .name {
 	max-height: 100px;
 
 }
-/*.fondoS {
-	background-image: url('../img/fondoheader.png') !important;
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
-
-}*/
 
 .imagenApartado {
 	margin: 0 0 35px 0;
@@ -68,6 +80,35 @@ header .intro-text .name {
 	max-height: 200px;
 
 }
+
+/*Funcionalidad que sobrescribe bootstrap para mostrar el menú colapsado*/
+
+
+.navbar-header {
+    float: none;
+}
+.navbar-toggle {
+    display: block;
+    float: left !important; /*hace que la hamburguesa se muestre a la izquierda del Branch*/
+}
+.navbar-collapse.collapse {
+    display: none!important;
+}
+.navbar-collapse.collapse.in {
+    display: block!important;
+}
+.navbar-nav {
+    float: none!important;
+}
+/*Para que solo los artículos se pongan uno bajo del otro*/
+.articulos {
+    float: none !important;
+}
+
+
+/*-------*/
+.navbar-nav>li>a {
+    padding-top: 5px;}
 
 .navbar-custom {
     background: black !important;
@@ -117,6 +158,23 @@ a.dropdown-item {
 	height: 100%;
 }
 
+.contenidoCentrado{
+      display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+#cv{
+     display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column; 
+}
 .hrheader {
     border-color: black !important;
     padding: 0;
@@ -164,13 +222,6 @@ footer {
 	background-color: grey !important;
     padding: 25px 0;
 }
-
-/*.floating-label-form-group {
-    position: relative;
-    margin-bottom: 1em !important;
-    padding-bottom: 1em;
-    border: 1px solid grey !important;
-}*/
 
 .divinput {
 	padding: 1em !important;

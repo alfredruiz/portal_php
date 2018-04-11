@@ -25,13 +25,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$idioma = $_POST['idiomas'];
 	$imagen_subida = $_POST['imagen_subida'];
 	$imagen = $_FILES['imagen'];
+	$sinImagen = $_POST['sinImagen'];
 	$usuario = $_SESSION['usuario'];
 
 	/*Si el valor título está vacío se trata de la cabecera*/
 	if (empty($_POST['titulo'])) {
-		$titulo1 = limpiarDatos($_POST['titulo1']);
-		$titulo2 = limpiarDatos($_POST['titulo2']);
-		$titulo3 = limpiarDatos($_POST['titulo3']);
+		$titulo1 = (!empty($_POST['titulo1'])) ? limpiarDatos($_POST['titulo1']) : " ";
+		$titulo2 = (!empty($_POST['titulo2'])) ? limpiarDatos($_POST['titulo2']) : " ";
+		$titulo3 = (!empty($_POST['titulo3'])) ? limpiarDatos($_POST['titulo3']) : " ";
 		$imagen_fondo_subida = $_POST['imagen_fondo_subida'];
 		$imagen_fondo = $_FILES['imagen_fondo'];
 	
@@ -46,7 +47,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	*/
 
 	if (empty($imagen['name'])) {
-		$imagen = $imagen_subida;
+		if (isset($_POST['sinImagen']) && $_POST['sinImagen'] == 'noimg' ) {
+			$sql = 'DELETE imagen FROM cabecera WHERE idioma = :idioma';
+			$borrar_imagen = $conexion->prepare($sql);
+			$borrar_imagen->execute(array(':idioma' => $idioma));
+
+		} else {
+		$imagen = $imagen_subida;}
 	} else {
 		$imagen_subida = '../' . $blog_config['carpeta_imagenes'] . $_FILES['imagen']['name'];
 		move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_subida);
@@ -63,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$imagen_fondo = $_FILES['imagen_fondo']['name'];
 	}
 
-	if (empty($titulo1)) {
+	if (!empty($titulo)) {
 		
 		$editar_articulo = $conexion->prepare('UPDATE articulos SET idioma = :idioma, seccion = :seccion, titulo = :titulo, texto = :texto, imagen = :imagen, usuario = :usuario WHERE id = :id');
 

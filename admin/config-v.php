@@ -34,7 +34,6 @@ $pashost1and1_5 = '1An';
 } 
 
 
-
 $blog_config = array(
 	'post_por_pagina' => '2',
 	'carpeta_imagenes' => 'img/',
@@ -48,13 +47,10 @@ $blog_config = array(
 	'razonSocial' => 'TRADCBM'
 );
 
-
 $pasmail_1 = 'dar';		$pasmail_2 = 2+1;
 $pasmail_3 = 'sii';		$pasmail_4 = 70+4;
 $pasmail_5 = 'TRa';		$usmail = 'info';
 $dommail = 'tradcbm.com';
-
-
 //CONFIGURACION PARA CORREO 1&1 (no admite otra)
 $mail_config = array(
 	'smtpDebug' => 0,                     
@@ -62,7 +58,7 @@ $mail_config = array(
 	'smtpSecure' => 'tls',                 
 	'host' => 'smtp.1and1.com',      
 	'port' => 25,             
-	'username' => $usmail . '@' . $dommail,  
+'username' => $usmail . '@' . $dommail,  
 	'password' => $pasmail_1 . (string)$pasmail_2 . $pasmail_3 . (string)$pasmail_4 . $pasmail_5 . '.' ,
 	'timeZone' => 'Europe/Madrid'
 );
@@ -70,15 +66,16 @@ $mail_config = array(
 $idioma_principal = 'es';
 
 $idiomas_config = array (
-	'es' => 'Español',
-	'en' => 'English',
-	'fr' => 'Français'
+	'es' => 'español',
+	'en' => 'english'
+	//'fr' => 'francais'
 	// 'ca' => 'català'
 );
 
 $complement_confing = array(
 	'galeria' => false,
 	'correo' => false,
+	'cv' => false,
 	'blog' => false //próximamente
 );
 

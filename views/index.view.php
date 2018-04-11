@@ -11,8 +11,19 @@
     background-image: url("<?php echo RUTA . '/img/' .$cabecera['imagen_fondo']; ?>") !important;
     background-repeat: no-repeat;
     background-size: 100% 100%;
+
 }
 </style>
+<script language="JavaScript"> 
+$(document).ready(function(){ 
+//Esta linea obtiene la altura de la pantalla y se la aplica al atributo heidht de la clase CSS que se llama div_altura_pantalla.
+        $(".fondoS").css("height",screen.height);
+        $("section").css("min-height",screen.height);
+ 
+});
+ 
+ 
+</script>
 
 <body id="page-top" class="index">
 
@@ -28,15 +39,15 @@
     
 
     <header class="fondoS" id="page-top">
-    <div class="transparente"></div>
-        <div class="container logo">
+    <!-- <div class="transparente"></div> -->
+        <div class="container contenidoCentrado">
             <div class="row" >
                 <div class="col-lg-12" >
                     <img class="img-responsive logoweb" src="<?php echo RUTA . '/img/' .$cabecera['imagen']; ?>" alt="">
                     <div class="intro-text">
                     <h4 class="subtitulotradcbm"><?php echo $cabecera['titulo1']; ?></h4>
                         <span class="name"><?php echo $cabecera['titulo2']; ?></span>
-                        <hr class="hrheader">
+                        <br><br>
                         <span class="skills"><?php echo $cabecera['titulo3']; ?> </span>
                     </div>
                 </div>
@@ -67,7 +78,7 @@
                 </div>
             </div>
             <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
+            <div class="col-lg-8 col-lg-offset-2 text-justify">
                 <p><?php echo $articulo['texto']; ?></p>
             </div>
         </div>

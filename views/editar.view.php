@@ -146,7 +146,12 @@
                                 <div class=" col-xs-10">
                                     <div class="archivoImagen">
                                         <label class="formlabel">Cambiar logotipo</label>
-                                        <input type="file" class="form-control inputtexto" name="imagen">
+                                        <input type="file" class="form-control inputtexto" name="imagen"><br>
+                                        <input type="checkbox" value="noimg" name="sinImagen"/>
+                                        <label class="inputtexto">&nbsp; Sin logotipo</label>
+                                        
+                                        
+
                                     </div>
                                 </div>
                             </div>
