@@ -25,10 +25,15 @@ CABECERA
             <hr>
         </div>
         <a href="../admin/nuevo.php" class="btn btn-primary text-right"><i class="fas fa-plus"></i> Nueva sección</a>&nbsp;
-        <a href="../admin/listado.php" class="btn btn-success text-right">En español</a>
-        <a href="../admin/listado.php?lan=en" class="btn btn-success text-right">In English</a>
-        <a href="../admin/listado.php?lan=fr" class="btn btn-success text-right">En francais</a>
-        <a href="../admin/listado.php?lan=ca" class="btn btn-success text-right">En català</a>
+            <?php foreach ($idiomas_config as $key => $value): ?>
+                <?php if ($key ==  'es'): ?>
+                    <a href="../admin/listado.php" class="btn btn-success text-right">español</a>
+                <?php else: ?>  
+                    <a href="../admin/listado.php?lan=<?php echo $key; ?>" class="btn btn-success text-right"><?php  echo $value; ?></a>
+                <?php endif ?>
+            <?php endforeach ?>
+ <!--        <a href="../admin/listado.php?lan=fr" class="btn btn-success text-right">En francais</a>
+        <a href="../admin/listado.php?lan=ca" class="btn btn-success text-right">En català</a> -->
         </div>
     </div>
     <br>

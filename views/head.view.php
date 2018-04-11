@@ -28,6 +28,8 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo RUTA ?>/js/bootstrap.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/umd/util.js"></script>
+    
 
     <!-- Plugin JavaScript -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
@@ -40,6 +42,14 @@
     <script src="<?php echo RUTA ?>/js/freelancer.min.js"></script>
     <!-- Ckeditor -->
     <script src="//cdn.ckeditor.com/4.5.5/standard/ckeditor.js"></script>
+
+    <!-- Sweet alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Carrusel -->
+<!--     <script src="<?php echo RUTA ?>/galeria/lib/jquery-1.4.4.min.js"></script>
+    <script src="<?php echo RUTA ?>/galeria/lib/jsCarousel-2.0.0.js"></script>
+    <script src="<?php echo RUTA ?>/galeria/lib/jsCarousel-2.0.0.css"></script> -->
 
     <!-- Modificar archivo config de FCEDITOR -->
     <script>
@@ -61,6 +71,8 @@
         };
 
     </script>
+
+    
 
 
 

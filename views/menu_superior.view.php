@@ -23,12 +23,27 @@
                 <a class="navbar-brand" href="<?php echo RUTA; ?>"><?php echo $usuario['razonsocial']; ?></a>
             </div>
     
-<!-- Collect the nav links, forms, and other content for toggling -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-left">
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
+                    <?php if (!empty($articulos)): ?>
+                        
+                    
+                    <?php foreach ($articulos as $articulo): ?>
+    
+                    <li>
+                        <a href="<?php  echo '#' . str_replace(' ', '',$articulo['titulo']) ?>"><?php echo $articulo['titulo']; ?></a>
+                    </li>
+    
+                    <?php endforeach ?>
+                    <?php endif ?>
+
+                    <?php if ($complement_confing['cv'] == true): ?>
+                        <li><a href="#cv">CV</a></li>
+                    <?php endif ?>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo strtoupper($idioma); ?> <i class="fas fa-caret-down"></i>
@@ -56,33 +71,8 @@
                     </li> 
                     <li><a href="<?php echo RUTA; ?>/admin/index.php"><i class="fa fa-cog menuawesome"></i></a></li>
                 </ul>
-            <!-- </div> -->
-            <!-- /.navbar-collapse -->
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> -->
-                <ul class="nav navbar-nav navbar-left">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <?php if (!empty($articulos)): ?>
-                        
-                    
-                    <?php foreach ($articulos as $articulo): ?>
-    
-                    <li>
-                        <a href="<?php  echo '#' . str_replace(' ', '',$articulo['titulo']) ?>"><?php echo $articulo['titulo']; ?></a>
-                    </li>
-    
-                    <?php endforeach ?>
-                    <?php endif ?>
-                    
-                    <!-- <li><a href="#galeria"><i class="fas fa-images menuawesome"></i></a></li> -->
-
-                </ul>
             </div>
             <!-- /.navbar-collapse -->
-            
         </div>
         <!-- /.container-fluid -->
     </nav>

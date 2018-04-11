@@ -21,6 +21,7 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li> 
+                    <li class="page-scroll"><a href="#">[<?php echo $_SERVER['HTTP_HOST']; ?>]</a></li>
                     <?php if (isset($_SESSION['usuario'])): ?>
                         <!-- <li><a href="#"><?php echo $blog_config['urlActual']; ?></a></li> -->
                         <li><a href="#"><?php echo 'Hola, ' . ucfirst($_SESSION['usuario']); ?></a></li>
@@ -29,6 +30,9 @@
                         </li>
                         <li class="page-scroll">
                             <a href="../admin/listado.php">Secciones</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="../galeria/listado_imagenes.php">Galería</a>
                         </li>
 <!--                         <li class="page-scroll">
                             <a href="../admin/registrar.php">Añadir usuario</a>

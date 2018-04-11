@@ -70,6 +70,7 @@ if (isset($_GET['ord'])) {
     $posicionOrigen = (int)$_GET['ord'];
     $posicionDestino = (int)$_GET['nord'];
     subirBajarArticulo($conexion, $posicionOrigen, $posicionDestino);
+    header('Location: listado.php');
 }
 
 

@@ -25,7 +25,7 @@
 
 <body id="page-top" class="index">
 
- <?php require 'menu_superior_admin.view.php'; ?>
+ <?php //require 'menu_superior_admin.view.php'; ?>
 
 <div class="separadorcabecera"></div>
 
