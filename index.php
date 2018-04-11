@@ -2,7 +2,6 @@
 
 require 'admin/config.php';
 require 'funciones.php';
-require 'galeria/funciones_galeria.php';
 
 // require_once 'admin/phpmailer.php';
 
@@ -48,7 +47,7 @@ if (isset($_GET['lan'])) {
 	$idioma = $_GET['lan'];
 	
 } else {
-	$idioma = $idioma_principal;
+	$idioma = "es";
 }
 
 
@@ -80,8 +79,8 @@ if(isset($_POST['btn_send']))
 		$mail->Host       = $mail_config['host'];      
 		$mail->Port       = $mail_config['port'];   
 		$mail->IsSMTP(); // use SMTP          
-		$mail->AddAddress('alfredruiz@gmail.com');
-		// $mail->AddAddress($correo_destino);
+		// $mail->AddAddress('alfredruiz@gmail.com');
+		$mail->AddAddress($correo_destino);
 		$mail->Username   =$mail_config['username'];  
 		$mail->Password   =$mail_config['password'];            
 		$mail->SetFrom($_POST['email'],$_POST['nombre']); //remitente
@@ -159,29 +158,6 @@ if (!$cabecera) {
 //     $mensajeError .= 'No se ha recibido información de la base de datos';
 //     echo $mensajeError;
 //     header('Location: error.php');
-// }
-
-$imagenes = obtener_imagenes($conexion, $idioma);
-$totalImagenesMostradas = 3;
-
-if (isset($_GET['idImg'])) {
-	$imagenSola = obtener_imagen_por_id($conexion, $imgId);
-}
-
-// FUNCIONES
-
-/*Para obtener los apartados o secciones de la web*/
-// function obtener_imagenes($conexion, $idioma){ //en el tutorial es obtener_post
-// 	$totalImagenes = $conexion->prepare('SELECT * FROM galeria_img WHERE idioma = :idioma ORDER BY orden');
-// 	$totalImagenes->execute(array(':idioma' => $idioma));
-// 	return $totalImagenes->fetchAll();
-// }
-
-// /*Obtener una imagen por su id*/
-// function obtener_imagen_por_id($conexion, $id){
-// 	$resultado = $conexion->query("SELECT * FROM galeria_img WHERE id = $id LIMIT 1");
-// 	$resultado = $resultado->fetchAll();
-// 	return ($resultado) ? $resultado : false;
 // }
 
 require 'views/index.view.php';

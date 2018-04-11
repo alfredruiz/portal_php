@@ -16,7 +16,7 @@
 
 <body id="page-top" class="index">
 
-    <?php require 'menu_superior.view.php'; require 'idiomas/'.$idioma.'.php'; ?>
+    <?php require 'menu_superior.view.php'; ?>
 
 
 
@@ -28,7 +28,7 @@
     
 
     <header class="fondoS" id="page-top">
-    <div class="transparente"></div>
+            <div class="transparente"></div>
         <div class="container logo">
             <div class="row" >
                 <div class="col-lg-12" >
@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
+            <div class="col-lg-8 col-lg-offset-2 text-justify">
                 <p><?php echo $articulo['texto']; ?></p>
             </div>
         </div>
@@ -78,76 +78,86 @@
     <?php endif ?>
 
 
-
-    <!-- 
-    *********************** 
-    GALERIA
-    ***********************
-    -->
-
-    <?php 
-    if ($complement_confing['galeria'] == true) {
-    require 'galeria/view/index.view.php'; 
-        }
-    ?>
-
-
-    <!-- 
-    *********************** 
-    CV
-    ***********************
-    -->
-
-    <?php 
-    if ($complement_confing['cv'] == true) {
-    require 'cv.view.php'; 
-        }
-    ?>
-
-    <!-- <section class="fondoazul""  >
-        <div class="container" id="cv">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Curriculum</h2>
-                    <hr class="hrazul">
-                </div>
-            <div class="col-lg-12 text-center">
-                <a href="http://www.innovars.es/cv" class="btn btn-lg btn-outline" target="blank">
-                    <i ></i> <?php echo $textos['curriculum_online'] ?>
-                </a>
-                <a href="http://www.innovars.es/cv/docs/cv16esq.pdf" class="btn btn-lg btn-outline" target="blank">
-                    <i ></i> <?php echo $textos['curriculum_esquema'] ?>
-                </a>
-            </div>
-        </div>
-    </section> -->
-
-
-
         <!-- 
     ********************** 
     SECCIÓN CONTACTO 
     **********************
     -->
     
-            <section class="fondogris" id="contacto">
+
+        <section class="fondogris" id="contacto">
         <div class="container ">
 
-                        <div class="row">
+            <!-- FORMULARIO -->
+            <?php
+                if ($idioma == 'en') {
+                    require 'idiomas/en.php';
+                } elseif ($idioma == 'es') {
+                    require 'idiomas/es.php';
+                } elseif ($idioma == 'fr') {
+                    require 'idiomas/fr.php';
+                }
+            ?>
+
+            <div class="row">
                 <div class="col-lg-12 text-center">
                 <img src="img/sobre.png" alt="hello picture" class="imagenPie">
-                <h2><?php echo $textos['contactoTitulo']; ?></h2>
-                <hr class="hrnegra">
+                <h2><?php //echo $textos['contactoTitulo']; ?></h2>
+                <!-- <hr class="hrnegra"> -->
             </div>
-        
-        <!-- FORMULARIO DE CONTACTO -->
+            
+                <!-- <form name="frmContacto" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
 
-    <?php 
-    if ($complement_confing['correo'] == true) {
-    require 'contact_form.view.php'; 
-        }
-    ?>
+                    <div class="col-xs-12">
+                        <div class="texstoContacto">
+                            <label class="contactLabel" ><?php echo $textos['contactoTexto']; ?> </label>
+                        
+                        </div>
+                    </div>
+                            <div class=" col-xs-12">
+                                <div class="divinput">
+                                <label class="contactLabel"><?php echo $textos['contactoNombre']; ?></label>
+                                <input type="text" class="form-control contactInput" id="nombre" name="nombre">
+                                </div>
+                            </div>
+                             <div class=" col-xs-12">
+                                <div class="divinput">
+                                <label class="contactLabel"><?php echo $textos['contactoEmail']; ?></label>
+                                <input type="text" class="form-control contactInput" id="email" name="email" >
+                                </div>
+                            </div>
+                            <div class=" col-xs-12">
+                                <div class="divinput">
+                                <label class="contactLabel"><?php echo $textos['contactoTelefono']; ?></label>
+                                <input type="text" class="form-control contactInput" id="telefono" name="telefono">
+                                </div>
+                            </div>
+                            <div class=" col-xs-12">
+                                <div class="divinput">
+                                <label class="contactLabel"><?php echo $textos['cotactoMensaje']; ?></label>
+                                <textarea type="text" class="form-control contactInput" id="mensaje" name="mensaje"></textarea>
+                                </div>
+                            </div>
 
+                       <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="divbutton">
+                                         <button name="btn_send" type="submit" class="btn btn-success btn-lg" onclick=""><?php echo $textos['contactoEnviar']; ?></button>
+                                    </div>
+                                </div>
+                          </div>
+                        <br>
+                       
+                    </form>
+                     <?php
+                      if(isset($msg))
+                      {
+                       echo $msg;
+                       
+                       echo "<script type='text/javascript'>swal('Mensaje enviado');</script>";
+                      }
+                      ?>
+            </div> -->
 
             <!-- DATOS DE CONTACTO -->
             <div class="row ">
@@ -191,20 +201,25 @@
                 
                 <!-- REDES SOCIALES -->
 
-                <div class="col-lg-12 text-center">
+                <!-- <div class="col-lg-12 text-center">
                     <ul class="list-inline">
-                       
                         <li>
-                            <a href="https://www.linkedin.com/in/alfredoruizsanchez/" title="Linkedin" target="blank" class="btn-social btn-outline"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
                         </li>
                         <li>
-                            <a href="https://github.com/alfredruiz/" target="blank" title="GitHub" class="btn-social btn-outline"><i class="fab fa-github"></i></a>
+                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
                         </li>
-                         <li>
-                            <a href="https://bitbucket.org/alfredruiz/" target="blank" title="Bitbucket" class="btn-social btn-outline"><i class="fab fa-bitbucket"></i></a>
+                        <li>
+                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                        </li>
+                        <li>
+                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
 

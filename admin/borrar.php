@@ -25,12 +25,33 @@ if (!$id || !$sec) {
 
 if ($sec == 'art') {
 
-	/*Opcion multi-query para borrar y luego resetear el orden de los artículos.*/
-
 	$sql = 'DELETE FROM articulos WHERE id = :id; SET @count = 0; UPDATE articulos SET orden = @count:= @count + 1';
 
 	$borrar_articulo = $conexion->prepare($sql);
 	$borrar_articulo->execute(array(':id' => $id));
+
+	// $borrar_articulo = $conexion->prepare('DELETE FROM articulos WHERE id = :id');
+	// $borrar_articulo->execute(array(':id' => $id));
+
+	// $ordenarArticulos = $conexion->prepare('SET @count = 0');
+	// $ordenarArticulos = $conexion->prepare('UPDATE articulos SET orden = @count:= @count + 1');
+
+
+
+	// for ($i = 1; $i <= $totalArticulos ; $i++) {
+		
+	// $orden = i;
+
+	// 	// foreach ($articulos as $articulo) {
+			
+	// 		$cambiarOrden = $conexion->prepare('UPDATE articulos SET orden = :orden WHERE orden = :ordenMas1');
+	// 		$cambiarOrden->execute(array(':orden' => $orden, ':ordenMas1' => $orden+1));
+
+	// 		//$orden++;
+			
+	// 	// }
+	// }
+
 	
 }
 

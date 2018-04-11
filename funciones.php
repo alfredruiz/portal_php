@@ -61,13 +61,17 @@ function obtener_articulo_por_orden($conexion, $orden){
 
 function subirBajarArticulo($conexion, $posicionOrigen, $posicionDestino){
 
+
 	$origen = obtener_articulo_por_orden($conexion,$posicionOrigen);
 	$destino =  obtener_articulo_por_orden($conexion,$posicionDestino);
+
 
 	$ordenOrigen = (int)$origen['orden'];
 	$idOrigen = (int)$origen['id'];
 	$ordenDestino = (int)$destino['orden'];
 	$idDestino = (int)$destino['id'];
+
+
 
 	$insertarOrdenDestino = $conexion->prepare('UPDATE articulos SET orden = :ordenDestino WHERE id = :idOrigen');
 	$insertarOrdenDestino->execute(array(
@@ -81,7 +85,8 @@ function subirBajarArticulo($conexion, $posicionOrigen, $posicionDestino){
 			':idDestino' => $idDestino
 	));
 
-	// header('Location: listado.php');
+	header('Location: listado.php');
+
 }
 
 /*Obtener la cabecera por idioma*/

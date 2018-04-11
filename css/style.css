@@ -69,6 +69,16 @@ header .intro-text .name {
 
 }
 
+.logoinnovars{
+	width: 100px;
+	vertical-align: bottom;
+}
+
+.logoinnovarspie{
+	width: 25px;
+	vertical-align: bottom;
+}
+
 .navbar-custom {
     background: black !important;
     font-weight: 700;
@@ -130,11 +140,6 @@ a.dropdown-item {
 .fondoazul{
 	background-color: #2C3E50;
 	color:white;
-}
-
-.fondoazulclaro{
-  background-color: #e6f7ff;
-  /*color:white;*/
 }
 
 .fondogris{
@@ -343,72 +348,24 @@ footer {
 	font-style: bold;	
 }
 
-.imgGaleria {
-  padding: 10px 0;
-  max-height: 200px;
-  width: auto;
-  display: block;
-    margin-left: auto;
-    margin-right: auto;
-    /*width: 40%;*/
+
+/*.floating-label-form-group-with-value label {
+    top: 0;
+    opacity: 1;
 }
 
-.imagenGaleria {
-  opacity: 1;
-  display: block;
-  max-width: 500px;
-  width: auto;
-  max-height: 250px;
-  /*height: auto;*/
-  transition: .5s ease;
-  backface-visibility: hidden;
-  margin: 15px;
-}
-
-.centrar {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  vertical-align: middle;
-}
-.middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 85%;
-  left: 50%;
-  width: 75%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%)
-}
-
-.contenedorImagen:hover .image {
-  opacity: 0.3;
-}
-
-.contenedorImagen:hover .middle {
-  opacity: 1;
-}
-
-.divTextoGaleria {
- background-color: black;
- opacity: .8;	
-}
-.textoGaleria a{
- 
-  color: white;
-  font-size: 16px;
-  padding: 10px;
-  border-radius: 15%;
-  text-decoration: none;
-  width: 100%;
-  margin-right:auto;
-  margin-left: auto;
-  display: block;
-
-}
-
-.textoGaleria a:hover{
-	text-decoration: none;
-	color:yellow;
-}
+freelancer.min.css:129
+.floating-label-form-group label {
+    display: block;
+    z-index: 0;
+    position: relative;
+    top: 2em;
+    margin: 0;
+    font-size: .85em;
+    line-height: 1.764705882em;
+    vertical-align: middle;
+    vertical-align: baseline;
+    opacity: 0;
+    -webkit-transition: top .3s ease,opacity .3s ease;
+    -moz-transition: top .3s ease,opacity .3s ease;
+    -ms-transition: top .3s ease,opacity .3s ease;*/
